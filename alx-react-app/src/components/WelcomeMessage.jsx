@@ -1,13 +1,12 @@
 import React from 'react';
-import WelcomeMessage from './components/WelcomeMessage'; // Vérifie le chemin
 
-function App() {
+function WelcomeMessage() {
     return (
         <div>
-            <h1>Bienvenue sur mon application React</h1>
-            <WelcomeMessage />
+            <h1>Hello everyone, I am learning React at ALX!</h1>
+            <p>I am learning about JSX!</p>
         </div>
     );
 }
 
-export default App;
+export default WelcomeMessage;
