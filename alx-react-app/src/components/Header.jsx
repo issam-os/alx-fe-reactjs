@@ -1,12 +1,12 @@
-// Footer.jsx
+// Header.jsx
 import React from 'react';
 
-const Footer = () => {
+const Header = () => {
   return (
-    <footer>
-      <p>© 2023 City Lovers</p>
-    </footer>
+    <header>
+      <h1>My Favorite Cities</h1>
+    </header>
   );
 };
 
-export default Footer;
+export default Header;
