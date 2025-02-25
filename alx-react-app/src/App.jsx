@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <h1>Bienvenue sur mon application React</h1>
-      <UserProfile name="Alice" age="30" bio="Loves hiking and photography" />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
     </div>
   );
 }
