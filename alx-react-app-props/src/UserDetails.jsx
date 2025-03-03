@@ -6,7 +6,7 @@ function UserDetails() {
 
   return (
     <div>
-      <p>Name: {userData.name}</p>
+      <h2>Name: {userData.name}</h2>
       <p>Email: {userData.email}</p>
     </div>
   );
