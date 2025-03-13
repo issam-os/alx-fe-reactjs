@@ -10,15 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",  // Corrected React version
-    "react-dom": "^18.2.0",  // Corrected React version
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^7.2.0",
-    "zustand": "^4.3.0"  // Added Zustand
+    "zustand": "^4.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@types/react": "^18.0.10",  // Corrected React types for version 18
-    "@types/react-dom": "^18.0.4",  // Corrected React DOM types
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
