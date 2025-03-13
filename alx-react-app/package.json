@@ -1,5 +1,5 @@
 {
-  "name": "alx-react-app",
+  "name": "my-company",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,19 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.2.0",  // Corrected React version
+    "react-dom": "^18.2.0",  // Corrected React version
+    "react-router-dom": "^7.2.0",
+    "zustand": "^4.3.0"  // Added Zustand
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^18.0.10",  // Corrected React types for version 18
+    "@types/react-dom": "^18.0.4",  // Corrected React DOM types
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.19.0",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.18",
-    "globals": "^15.14.0",
-    "vite": "^6.1.0"
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
   }
 }
