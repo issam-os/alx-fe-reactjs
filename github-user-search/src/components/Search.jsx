@@ -3,20 +3,29 @@ import axios from "axios";
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [user, setUser] = useState(null);
+  const [location, setLocation] = useState("");
+  const [repos, setRepos] = useState("");
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const fetchUserData = async (username) => {
+  const fetchUsers = async () => {
     setLoading(true);
     setError("");
-    setUser(null);
+    setUsers([]);
 
     try {
-      const response = await axios.get(`https://api.github.com/users/${username}`);
-      setUser(response.data);
+      let searchQuery = `q=${query}`;
+      if (location) searchQuery += `+location:${location}`;
+      if (repos) searchQuery += `+repos:>${repos}`;
+
+      const response = await axios.get(
+        `https://api.github.com/search/users?${searchQuery}`
+      );
+
+      setUsers(response.data.items);
     } catch (err) {
-      setError("Looks like we can't find the user");
+      setError("Error fetching users. Try again later.");
     } finally {
       setLoading(false);
     }
@@ -24,21 +33,33 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      fetchUserData(query);
-    }
+    if (query.trim()) fetchUsers();
   };
 
   return (
-    <div className="flex flex-col items-center my-4">
-      {/* Search Input */}
-      <form onSubmit={handleSubmit} className="flex space-x-2">
+    <div className="flex flex-col items-center my-6">
+      {/* Search Form */}
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-3 w-full max-w-md">
         <input
           type="text"
           placeholder="Search GitHub user..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="text"
+          placeholder="Location (Optional)"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="px-4 py-2 border rounded-lg focus:outline-none"
+        />
+        <input
+          type="number"
+          placeholder="Min Repositories (Optional)"
+          value={repos}
+          onChange={(e) => setRepos(e.target.value)}
+          className="px-4 py-2 border rounded-lg focus:outline-none"
         />
         <button
           type="submit"
@@ -54,18 +75,22 @@ const Search = () => {
       {/* Error Message */}
       {error && <p className="mt-4 text-red-500">{error}</p>}
 
-      {/* User Info Display */}
-      {user && (
-        <div className="mt-6 p-4 border rounded-lg shadow-lg flex flex-col items-center">
-          <img
-            src={user.avatar_url}
-            alt="User Avatar"
-            className="w-24 h-24 rounded-full border"
-          />
-          <h2 className="mt-2 text-xl font-semibold">{user.login}</h2>
-          <a
-            href={user.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 text-blue-500 hover
-"Looks like we cant find the user"
+      {/* Search Results */}
+      {users.length > 0 && (
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {users.map((user) => (
+            <div key={user.id} className="p-4 border rounded-lg shadow-lg flex flex-col items-center">
+              <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full border" />
+              <h2 className="mt-2 text-lg font-semibold">{user.login}</h2>
+              <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                View Profile
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Search;
