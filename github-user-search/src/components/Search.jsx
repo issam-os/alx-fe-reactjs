@@ -68,3 +68,4 @@ const Search = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 text-blue-500 hover
+"Looks like we cant find the user"
