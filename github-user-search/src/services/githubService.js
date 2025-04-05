@@ -22,6 +22,13 @@ export const fetchUsers = async (username, location = "", minRepos = 0) => {
     if (minRepos > 0) {
       query += `+repos:>${minRepos}`;
     }
+// src/services/githubService.js
+import axios from 'axios';
+
+export const fetchUserData = async (username) => {
+  const response = await axios.get(`https://api.github.com/users/${username}`);
+  return response.data;
+};
 
     // Make the API request
     const response = await axios.get(`${BASE_URL}${query}`);
